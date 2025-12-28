@@ -23,11 +23,14 @@ jobs:
         distribution: 'temurin'
         java-version: '11'
 
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential git python3 python3-dev ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev autoconf libtool ant
+
     - name: Install Buildozer
       run: |
         pip install buildozer cython==0.29.33
-        sudo apt-get update
-        sudo apt-get install -y build-essential git python3 python3-dev ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev autoconf libtool
 
     - name: Build APK
       run: buildozer -v android debug
